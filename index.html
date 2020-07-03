@@ -20,7 +20,7 @@
         
     </header>
 
-    <div :class="{'bounceIn animated': animated}" @animationend="animated = false" id="app">
+    <div  id="app">
 
         <div class="flex">
             <h1>Bảng Cửu Chương: </h1>
@@ -28,7 +28,7 @@
         </div>
 
 
-        <h2> {{ quantity }} x {{ up }} =
+        <h2 :class="{'bounceIn animated': animated}" @animationend="animated = false"> {{ quantity }} x {{ up }} =
 
             <div :class="{'jello animated': animated}" @animationend="animated = false" class='out'>{{ count }}</div>
 
