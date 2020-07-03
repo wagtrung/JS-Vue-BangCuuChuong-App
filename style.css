@@ -174,14 +174,14 @@ button:hover{
           width: 70%;
       }
     #app{
-            margin: auto 0;
+            margin: 10% auto 0;
     min-width: 40px;
     border-radius: 0px;
         
     }
     .out{
-        min-width: 60px;
-        font-size: 60px;
+        min-width: 50px;
+        font-size: 50px;
     }
     .onright{
         right: auto;
