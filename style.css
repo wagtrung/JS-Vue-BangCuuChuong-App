@@ -174,8 +174,9 @@ button:hover{
           width: 70%;
       }
     #app{
-        margin: auto 0;
-        min-width: 100vw;
+            margin: auto 0;
+    min-width: 40px;
+    border-radius: 0px;
         
     }
     .out{
