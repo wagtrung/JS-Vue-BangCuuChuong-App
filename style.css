@@ -186,4 +186,9 @@ button:hover{
         margin-right: -50%;
         transform: translate(-50%, 0%);
     }
+      input{
+          padding:24px;}
+      h1{
+      width: 50%;
+    font-size: 20px;}
   }
