@@ -2,6 +2,7 @@
     --dark: #000a36;
 }
 body{
+    overflow:hidden;
     font-family: Helvetica, Arial, sans-;
     margin: 0;
     padding: 0;
