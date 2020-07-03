@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link href="https://unpkg.com/animate.css@3.5.2/animate.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/png" href="favicon.ico">
+    <title>WagTrung Cal</title>
+</head>
+
+<body>
+
+    <header>
+        <div id="logo">
+            <img  src="e2.png" alt="">
+        </div>
+        
+    </header>
+
+    <div :class="{'bounceIn animated': animated}" @animationend="animated = false" id="app">
+
+        <div class="flex">
+            <h1>Bảng Cửu Chương: </h1>
+            <input type="text" v-model='quantity' v-on:keyUp="resetCount(quantity)"></input>
+        </div>
+
+
+        <h2> {{ quantity }} x {{ up }} =
+
+            <div :class="{'jello animated': animated}" @animationend="animated = false" class='out'>{{ count }}</div>
+
+        </h2>
+
+        <div class="onright">
+            <button v-on:click="countUp($event, quantity)" @click="animate">Next</button>
+            <button v-on:click="countDown($event, quantity)" @click="animate">Back</button>
+            <button v-on:click="resetCount(1)">Clear</button>
+        </div>
+
+
+        <!-- <div style="background:red; padding: 20px" 
+            v-on:mouseover="mouse">
+            <h4>x cordinates {{clientX}}</h4>
+        <h4>y cordinates {{clientY}}</h4>
+        </div>
+
+        <form  action="" v-on:submit.prevent="submit">
+            <input v-on:keyup.enter="submit" type="text" name="name">name</input>
+            <input v-on:keyup.enter="submit" type="password" name="password">pass</input>
+            <input type="submit" value="submit"></input>
+        </form>
+
+
+        <h1>A: {{addA}}</h1>
+        <h1>B: {{addB}}</h1>
+        <button v-on:click="a++">for A</button>
+        <button v-on:click="b++">for B</button> -->
+    </div>
+
+
+
+</body>
+
+
+<script>
+    var appVue = new Vue({
+        el: '#app',
+        data: {
+            count: 0,
+            clientX: 0,
+            clientY: 0,
+            a: 0,
+            b: 0,
+            quantity: 1,
+            up: 0,
+            animated: false
+        },
+        methods: {
+            animate() {
+                
+                this.animated = true
+           
+            },
+            countUp(e, v) {
+
+                // console.log(e.target)
+                if (this.up < 10) {
+                    this.up++
+                    this.count += parseInt(v);
+                }
+            },
+            countDown(e, v) {
+                if (this.up > 0) {
+                    this.up--
+                    this.count -= parseInt(v);
+                }
+            },
+            resetCount(x) {
+                if( x <10){
+                this.count = 0
+                this.up = 0}
+                else{
+                    alert(' bang cuu chuong nho hon 9')
+                    this.quantity=1
+                }
+            },
+
+            // mouse(k) {
+            //     this.clientX = k.clientX;
+            //     this.clientY = k.clientY
+
+            // },
+            // submit(e) {
+            //     console.log(e)
+            // }
+        },
+        computed: {
+
+            // addA() {
+            //     console.log('a ne')
+            //     return this.a
+
+            // },
+            // addB() {
+            //     console.log('b ne')
+            //     return this.b
+
+            // }
+        }
+
+    })
+</script>
+
+</html>
