@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link href="https://unpkg.com/animate.css@3.5.2/animate.min.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+    <!-- ====== CSS ====== -->
+    <style>
+        /* ========================================================== */
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.quick-alo-ph-circle {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    top: 50px;
+    right: 50px;
+    border: 2px solid #00A1FF;
+    background-color: transparent;
+    border-radius: 100%;
+    opacity: .1;
+    animation: quick-alo-circle-anim 1.2s infinite ease-in-out;
+    transition: all .5s;
+    transform-origin: 50% 50%;
+}
+
+.quick-alo-ph-circle-fill {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 80px;
+    right:  80px;
+    background-color: rgba(0, 161, 255, 0.5);
+    border-radius: 100%;
+    border: 2px solid transparent;
+    opacity: .1;
+    animation: quick-alo-circle-fill-anim 2.3s infinite ease-in-out;
+    transition: all .5s;
+    transform-origin: 50% 50%;
+}
+
+.quick-alo-ph-img-circle {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: 100px;
+    right: 100px;
+    background: #00A1FF;
+    border-radius: 100%;
+    border: 2px solid transparent;
+    opacity: .99;
+    animation: quick-alo-circle-img-anim 1s infinite ease-in-out;
+    transform-origin: 50% 50%;
+    font-size: 20px;
+    line-height: 62px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+}
+
+@keyframes quick-alo-circle-anim {
+    0% {
+        transform: rotate(0) scale(.5) skew(1deg);
+        opacity: .1
+    }
+    30% {
+        transform: rotate(0) scale(.7) skew(1deg);
+        opacity: .5
+    }
+    100% {
+        transform: rotate(0) scale(1) skew(1deg);
+        opacity: .1
+    }
+}
+
+@keyframes quick-alo-circle-fill-anim {
+    0% {
+        transform: rotate(0) scale(.7) skew(1deg);
+        opacity: .2
+    }
+    50% {
+        transform: rotate(0) scale(1) skew(1deg);
+        opacity: .2
+    }
+    100% {
+        transform: rotate(0) scale(.7) skew(1deg);
+        opacity: .2
+    }
+}
+
+@keyframes quick-alo-circle-img-anim {
+    0% {
+        transform: rotate(0) scale(1) skew(1deg)
+    }
+    10% {
+        transform: rotate(-25deg) scale(1) skew(1deg)
+    }
+    20% {
+        transform: rotate(25deg) scale(1) skew(1deg)
+    }
+    30% {
+        transform: rotate(-25deg) scale(1) skew(1deg)
+    }
+    40% {
+        transform: rotate(25deg) scale(1) skew(1deg)
+    }
+    50% {
+        transform: rotate(0) scale(1) skew(1deg)
+    }
+    100% {
+        transform: rotate(0) scale(1) skew(1deg)
+    }
+}
+
+
+        #app {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .select {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .select li {
+            display: inline-block;
+            padding: 20px;
+            margin: 10px;
+            cursor: pointer;
+            border: 2px solid #333;
+            border-radius: 100%;
+            font-size: 30px;
+            line-height: 20px;
+        }
+
+        .select li.active,
+        .select li:hover {
+            border-color: rgb(0, 173, 66);
+            background: #0fdd7d;
+            color: #fff;
+        }
+
+        .flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .show {
+            box-shadow: 5px 4px 20px #d4d4d4, -2px 20px 60px #ededed;
+            display: inline-block;
+            border: 10px solid #ffffff;
+            border-radius: 10px;
+            margin: 10px;
+            min-width: calc(100%/4);
+            text-align: center;
+            padding: 20px 0;
+            cursor: pointer;
+            transition: .5s;
+        }
+        .show:hover{
+            box-shadow: 0px 4px 5px #d4d4d4, 0px 20px 10px #e0e0e0;
+            border-color: #0fdd7d;
+            transform: scale(.97);
+        }
+
+        .show li {
+            font-size: 26px;
+            padding: 6px;
+            list-style: none;
+        }
+
+        .show li:nth-child(even) {
+            background: #f3fff8;
+        }
+    </style>
+
+    <!-- ====== APP ====== -->
+    <a href="index.html">
+        <div class="quick-alo-ph-circle"></div>
+        <div class="quick-alo-ph-circle-fill"></div>
+        <div class="quick-alo-ph-img-circle">KHẢO</div>
+    </a>
+    <div id="app">
+        <ul class='select'>
+            <li v-for="(x,index) in SelectList" v-on:click="selected(index)" :class="activeClass(index) " @click="animate">
+                {{x}}
+            </li>
+            <li v-on:click="showAll()" :class="activeClassAll()" @click="animate">All</li>
+        </ul>
+        <hr>
+
+        <div :class="{'bounceIn animated ': animated}" @animationend="animated = false" class="flex">
+            <ul class='show' v-if="one === true">
+                <li v-for="x in list">
+                    {{ select}} x {{x}} = {{ select * x }}
+                </li>
+            </ul>
+        </div>
+
+        <div class="flex">
+            <ul v-for="k in SelectList" class='show' v-if="All === true">
+                <li :class="{'slideInUp animated': animated}" @animationend="animated = false"  v-for="x in list">
+                    {{ k }} x {{x}} = {{ k* x }}
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+
+<!-- ====== Vue JS ====== -->
+<script>
+    var newVue = new Vue({
+
+        el: '#app',
+        data: {
+            select: 1,
+            SelectList: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+            list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            All: false,
+            one: true,
+            animated: false
+
+        },
+
+        methods: {
+            animate() {       
+                this.animated = true
+            },
+            selected(index) {
+                return this.select = index + 1,
+                    this.All = false
+                    , this.one = true
+            },
+            activeClass(index) {
+                return { active: this.select === (index + 1) && this.one === true }
+            },
+            activeClassAll() {
+                return { active: this.All }
+            },
+            showAll() {
+                return this.All = !this.All, this.one = !this.one
+
+            }
+
+        },
+
+
+        computed: {
+
+        }
+
+    })
+</script>
+
+</html>
